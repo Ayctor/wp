@@ -1,0 +1,39 @@
+{
+    "name": "ayctor/wp",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Damien Couteillou",
+            "email": "damien@ayctor.com"
+        }
+    ],
+    "scripts": {
+        "post-root-package-install": [
+            "php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ]
+    },
+    "config": {
+        "preferred-install": "dist",
+        "optimize-autoloader": true,
+        "sort-packages": true
+    },
+    "description": "WP boilerplate from Ayctor",
+    "minimum-stability": "dev",
+    "require": {
+        "php": "^7.0",
+        "filp/whoops": "^2.0@dev",
+        "illuminate/filesystem": "5.5.x-dev",
+        "illuminate/support": "5.5.x-dev",
+        "illuminate/view": "5.5.x-dev",
+        "mmucklo/inflect": "dev-master",
+        "symfony/var-dumper": "3.4.x-dev",
+        "tgmpa/tgm-plugin-activation": "dev-master",
+        "vlucas/phpdotenv": "^2.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Ayctor\\": "app/"
+        }
+    }
+}
