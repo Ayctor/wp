@@ -3,9 +3,9 @@
 return [
 
     'templates' => [
-        __DIR__ . '/ressources/views'
+        TEMPLATEPATH . '/ressources/views'
     ],
 
-    'compiled' => __DIR__ . '/ressources/views/cache'
+    'compiled' => TEMPLATEPATH . '/ressources/views/cache'
 
 ];

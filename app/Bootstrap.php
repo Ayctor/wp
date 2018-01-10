@@ -1,6 +1,6 @@
 <?php
 
-namespace Ayctor\Bootstrap;
+namespace Ayctor;
 
 /**
  * Class Bootstrap to init functions inside WP
@@ -284,7 +284,7 @@ class Bootstrap
     protected function mix($file)
     {
         $path = '';
-        $mix_manifest = file_get_contents(__DIR__ . '/../../build/mix-manifest.json');
+        $mix_manifest = file_get_contents(__DIR__ . '/../build/mix-manifest.json');
         $manifest = json_decode($mix_manifest);
         $file = '/' . ltrim($file, '/');
         if (isset($manifest->{$file})) {

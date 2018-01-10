@@ -4,8 +4,51 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "08f1cb7c9bf359e35fa9c3afaa00c47c",
+    "content-hash": "bfaf1b247e8214af61ac0ca399ccd80d",
     "packages": [
+        {
+            "name": "ayctor/wp-core",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Ayctor/wp-core.git",
+                "reference": "a04f4222fb0affc92618c90239486ecb5188f6db"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Ayctor/wp-core/zipball/a04f4222fb0affc92618c90239486ecb5188f6db",
+                "reference": "a04f4222fb0affc92618c90239486ecb5188f6db",
+                "shasum": ""
+            },
+            "require": {
+                "filp/whoops": "^2.0@dev",
+                "illuminate/config": "5.5.x-dev",
+                "illuminate/view": "5.5.x-dev",
+                "mmucklo/inflect": "dev-master",
+                "symfony/var-dumper": "3.4.x-dev"
+            },
+            "type": "project",
+            "autoload": {
+                "psr-0": {
+                    "WpCore": "src/"
+                },
+                "files": [
+                    "src/WpCore/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Damien Couteillou",
+                    "email": "damien@ayctor.com"
+                }
+            ],
+            "description": "Core functionalities for ayctor wp template",
+            "time": "2018-01-10T14:37:17+00:00"
+        },
         {
             "name": "doctrine/inflector",
             "version": "1.2.x-dev",
@@ -133,6 +176,50 @@
                 "whoops"
             ],
             "time": "2017-11-23T18:22:44+00:00"
+        },
+        {
+            "name": "illuminate/config",
+            "version": "5.5.x-dev",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/illuminate/config.git",
+                "reference": "09bb7534fb6c33c2bf5a4157a539c8e2c876a1fa"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/illuminate/config/zipball/09bb7534fb6c33c2bf5a4157a539c8e2c876a1fa",
+                "reference": "09bb7534fb6c33c2bf5a4157a539c8e2c876a1fa",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "5.5.*",
+                "illuminate/support": "5.5.*",
+                "php": ">=7.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "5.5-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Illuminate\\Config\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                }
+            ],
+            "description": "The Illuminate Config package.",
+            "homepage": "https://laravel.com",
+            "time": "2017-06-26T13:15:04+00:00"
         },
         {
             "name": "illuminate/container",
@@ -323,12 +410,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
-                "reference": "c39d181c3cb8b362820bb902cfa5dfc1f97b1181"
+                "reference": "c7cfeab3567de8bfd0c5c08f5458ae534c6e072c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/support/zipball/c39d181c3cb8b362820bb902cfa5dfc1f97b1181",
-                "reference": "c39d181c3cb8b362820bb902cfa5dfc1f97b1181",
+                "url": "https://api.github.com/repos/illuminate/support/zipball/c7cfeab3567de8bfd0c5c08f5458ae534c6e072c",
+                "reference": "c7cfeab3567de8bfd0c5c08f5458ae534c6e072c",
                 "shasum": ""
             },
             "require": {
@@ -372,7 +459,7 @@
             ],
             "description": "The Illuminate Support package.",
             "homepage": "https://laravel.com",
-            "time": "2018-01-04T13:50:41+00:00"
+            "time": "2018-01-09T14:10:57+00:00"
         },
         {
             "name": "illuminate/view",
@@ -380,12 +467,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/view.git",
-                "reference": "7e8d3cb28ab6f1c450b670646b1517f367399447"
+                "reference": "d101d49ebf6a4876f28b8a5ed1f205b0a73fd8c9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/view/zipball/7e8d3cb28ab6f1c450b670646b1517f367399447",
-                "reference": "7e8d3cb28ab6f1c450b670646b1517f367399447",
+                "url": "https://api.github.com/repos/illuminate/view/zipball/d101d49ebf6a4876f28b8a5ed1f205b0a73fd8c9",
+                "reference": "d101d49ebf6a4876f28b8a5ed1f205b0a73fd8c9",
                 "shasum": ""
             },
             "require": {
@@ -420,7 +507,7 @@
             ],
             "description": "The Illuminate View package.",
             "homepage": "https://laravel.com",
-            "time": "2017-11-21T13:35:42+00:00"
+            "time": "2018-01-06T12:12:26+00:00"
         },
         {
             "name": "mmucklo/inflect",
@@ -907,12 +994,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-dumper.git",
-                "reference": "545be7e78ccbec43e599f10ff7500d0b09eda9d0"
+                "reference": "87426fa24619cd5a232807b1b95c1f8449f8aa11"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/545be7e78ccbec43e599f10ff7500d0b09eda9d0",
-                "reference": "545be7e78ccbec43e599f10ff7500d0b09eda9d0",
+                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/87426fa24619cd5a232807b1b95c1f8449f8aa11",
+                "reference": "87426fa24619cd5a232807b1b95c1f8449f8aa11",
                 "shasum": ""
             },
             "require": {
@@ -968,87 +1055,32 @@
                 "debug",
                 "dump"
             ],
-            "time": "2018-01-03T17:14:19+00:00"
-        },
-        {
-            "name": "tgmpa/tgm-plugin-activation",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/TGMPA/TGM-Plugin-Activation.git",
-                "reference": "c626d0d91fc8ef24916e809c7b79eeafab1c1cac"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/TGMPA/TGM-Plugin-Activation/zipball/c626d0d91fc8ef24916e809c7b79eeafab1c1cac",
-                "reference": "c626d0d91fc8ef24916e809c7b79eeafab1c1cac",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.2"
-            },
-            "type": "library",
-            "autoload": {
-                "files": [
-                    "class-tgm-plugin-activation.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-2.0+"
-            ],
-            "authors": [
-                {
-                    "name": "Thomas Griffin",
-                    "homepage": "http://thomasgriffinmedia.com",
-                    "role": "Developer"
-                },
-                {
-                    "name": "Gary Jones",
-                    "homepage": "https://github.com/GaryJones",
-                    "role": "Developer"
-                },
-                {
-                    "name": "Juliette Reinders Folmer",
-                    "homepage": "https://github.com/jrfnl",
-                    "role": "Developer"
-                }
-            ],
-            "description": "TGM Plugin Activation is a PHP library that allows you to easily require or recommend plugins for your WordPress themes (and plugins).",
-            "homepage": "http://tgmpluginactivation.com",
-            "keywords": [
-                "activation",
-                "library",
-                "plugins",
-                "theme",
-                "wordpress"
-            ],
-            "time": "2016-05-19T15:46:51+00:00"
+            "time": "2018-01-10T11:30:01+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
-            "version": "v2.4.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vlucas/phpdotenv.git",
-                "reference": "3cc116adbe4b11be5ec557bf1d24dc5e3a21d18c"
+                "reference": "ec37c495d56b68f103acafa95fec5ed39b14d7db"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/3cc116adbe4b11be5ec557bf1d24dc5e3a21d18c",
-                "reference": "3cc116adbe4b11be5ec557bf1d24dc5e3a21d18c",
+                "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/ec37c495d56b68f103acafa95fec5ed39b14d7db",
+                "reference": "ec37c495d56b68f103acafa95fec5ed39b14d7db",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.9"
             },
             "require-dev": {
-                "phpunit/phpunit": "^4.8 || ^5.0"
+                "phpunit/phpunit": "^4.8.35 || ^5.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.4-dev"
+                    "dev-master": "2.5-dev"
                 }
             },
             "autoload": {
@@ -1073,20 +1105,15 @@
                 "env",
                 "environment"
             ],
-            "time": "2016-09-01T10:05:43+00:00"
+            "time": "2017-11-24T14:28:50+00:00"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "filp/whoops": 20,
-        "illuminate/filesystem": 20,
-        "illuminate/support": 20,
-        "illuminate/view": 20,
-        "mmucklo/inflect": 20,
-        "symfony/var-dumper": 20,
-        "tgmpa/tgm-plugin-activation": 20
+        "ayctor/wp-core": 20,
+        "vlucas/phpdotenv": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

@@ -8,8 +8,6 @@
 
   - Class loader for bootstraps, commands, ajax, models and shortcodes
 
-  - Extract all setup to another composer package to keep theme clean ?
-
   - make use of wp actions
 
   - custom router

@@ -2,6 +2,8 @@
 
 namespace Ayctor\Controllers;
 
+use WpCore\Controllers\Controller;
+
 /**
  * Class PageController to manage pages views
  */

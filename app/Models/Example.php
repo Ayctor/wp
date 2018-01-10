@@ -2,6 +2,8 @@
 
 namespace Ayctor\Models;
 
+use WpCore\Models\Model;
+
 class Example extends Model
 {
     protected $post_type = 'example';
