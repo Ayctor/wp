@@ -3,9 +3,9 @@
 return [
 
     'templates' => [
-        TEMPLATEPATH . '/ressources/views'
+        TEMPLATEPATH . '/resources/views'
     ],
 
-    'compiled' => TEMPLATEPATH . '/ressources/views/cache'
+    'compiled' => TEMPLATEPATH . '/resources/views/cache'
 
 ];

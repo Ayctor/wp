@@ -2,7 +2,7 @@ let mix = require('laravel-mix');
 let StyleLintPlugin = require('stylelint-webpack-plugin');
 
 mix.setPublicPath('build/');
-mix.setResourceRoot('ressources/');
+mix.setResourceRoot('resources/');
 
 mix.webpackConfig({
     devServer: {
@@ -20,7 +20,7 @@ mix.webpackConfig({
     },
     plugins: [
         new StyleLintPlugin({
-            context: 'ressources/styles',
+            context: 'resources/styles',
             lintDirtyModulesOnly: true,
             syntax: 'scss'
         }),
@@ -31,9 +31,9 @@ mix.options({
     processCssUrls: false
 });
 
-mix.js('ressources/scripts/app.js', 'build/scripts/');
+mix.js('resources/scripts/app.js', 'build/scripts/');
 
-mix.sass('ressources/styles/app.scss', 'build/styles/');
+mix.sass('resources/styles/app.scss', 'build/styles/');
 
 mix.sourceMaps(true, 'cheap-source-map');
 
