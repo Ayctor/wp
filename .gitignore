@@ -1,7 +1,7 @@
 # Ayctor WP
 page-test.php
 /build/
-/ressources/views/cache/
+/resources/views/cache/
 
 # Created by https://www.gitignore.io/api/node,macos,windows,composer,intellij
 

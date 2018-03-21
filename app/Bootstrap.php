@@ -12,6 +12,9 @@ class Bootstrap
         // Hide admin bar
         add_filter('show_admin_bar', '__return_false');
 
+        // Hide ACF in admin
+        define('ACF_LITE', true);
+
         // Setup theme support
         add_action('after_setup_theme', [$this, 'themeSupports']);
 
@@ -33,11 +36,6 @@ class Bootstrap
 
         // Footer text
         add_filter('admin_footer_text', [$this, 'footerText']);
-
-        // Add meta to admin search
-        add_filter('posts_join', [$this, 'postsJoin']);
-        add_filter('posts_where', [$this, 'postsWhere']);
-        add_filter('posts_groupby', [$this, 'postsGroupby']);
     }
 
     /**
@@ -189,91 +187,6 @@ class Bootstrap
     public function footerText()
     {
         return 'Merci d\'avoir fait appel à <a href="http://ayctor.com/" target="_blank">Ayctor</a> pour votre site';
-    }
-
-    /**
-     * Edit JOIN query when searching in admin
-     * @param  string $join Current JOIN query
-     * @return string       New JOIN query
-     */
-    public function postsJoin($join)
-    {
-        global $pagenow, $wpdb;
-
-        if (is_admin() && $pagenow == 'edit.php' && !empty($_GET['post_type']) && !empty($_GET['s'])) {
-            $join .= 'LEFT JOIN ' . $wpdb->postmeta . ' ON ' . $wpdb->posts . '.ID = ' . $wpdb->postmeta . '.post_id ';
-        }
-
-        return $join;
-    }
-
-    /**
-     * Edit WHERE query when searching in admin
-     * @param  string $where Current WHERE query
-     * @return string        New WHERE query
-     */
-    public function postsWhere($where)
-    {
-        global $wpdb, $wp;
-
-        if (!self::extendQuery() || $wp->query_vars['s'] == '') {
-            return $where;
-        }
-
-        $search = ")))";
-
-        $replace = ") OR ($wpdb->postmeta.meta_value LIKE '%{$wp->query_vars['s']}%')))";
-
-        $where = str_replace($search, $replace, $where);
-
-        return $where;
-    }
-
-    /**
-     * Edit GROUP BY query
-     * @param  string $groupby Current GROUP BY query
-     * @return string          New GROUP BY query
-     */
-    public function postsGroupby($groupby)
-    {
-        global $wpdb, $wp;
-
-        if (!self::extendQuery() || $wp->query_vars['s'] == '') {
-            return $groupby;
-        }
-
-        if (empty($groupby)) {
-            $groupby = "$wpdb->posts.ID";
-        }
-
-        return $groupby;
-    }
-
-    /**
-     * Helper function to know when to extend search query
-     * @return boolean Whether or not to extend query
-     */
-    protected static function extendQuery()
-    {
-        global $pagenow, $wp_query;
-
-        if (! is_admin()) {
-            return false;
-        }
-
-        if ('edit.php' != $pagenow) {
-            return false;
-        }
-
-        if (! isset($_GET['s'])) {
-            return false;
-        }
-
-        if (! $wp_query->is_search) {
-            return false;
-        }
-
-        return true;
     }
 
     /**

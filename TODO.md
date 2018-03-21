@@ -4,8 +4,6 @@
 
   - Allow some meta to be searchable
 
-  - Hide ACF plugin in the menu
-
   - Class loader for bootstraps, commands, ajax, models and shortcodes
 
   - make use of wp actions
@@ -13,12 +11,6 @@
   - custom router
 
   - minimum stability -> stable
-
-## FRONT :
-
-  - tailwind, bootstrap, clean ?
-
-  - js vendors ?
 
 ## README :
 
