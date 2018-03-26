@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Ayctor/wp-core.git",
-                "reference": "b55674a1db3b64d4f2ac6d194bee47ac7710436e"
+                "reference": "401e212858d3319d5e026f0b6a1887f790c406a7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Ayctor/wp-core/zipball/b55674a1db3b64d4f2ac6d194bee47ac7710436e",
-                "reference": "b55674a1db3b64d4f2ac6d194bee47ac7710436e",
+                "url": "https://api.github.com/repos/Ayctor/wp-core/zipball/401e212858d3319d5e026f0b6a1887f790c406a7",
+                "reference": "401e212858d3319d5e026f0b6a1887f790c406a7",
                 "shasum": ""
             },
             "require": {
@@ -49,7 +49,7 @@
                 }
             ],
             "description": "Core functionalities for ayctor wp template",
-            "time": "2018-03-21T14:43:19+00:00"
+            "time": "2018-03-23T10:55:48+00:00"
         },
         {
             "name": "doctrine/inflector",

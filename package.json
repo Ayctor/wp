@@ -7,22 +7,22 @@
         "watch-poll": "npm run watch -- --watch-poll",
         "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
         "prod": "npm run production",
-        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-        "svg": "mkdir -p build/svg && svgo -f resources/svg && svg-sprite-generate -d resources/svg -o build/svg/sprite.svg"
+        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
     },
     "devDependencies": {
+        "@ayctor/laravel-mix-svg-sprite": "^0.1.0",
         "browser-sync": "^2.23.6",
         "browser-sync-webpack-plugin": "^2.0.1",
         "cross-env": "^5.1.4",
         "laravel-mix": "^2.1.11",
-        "svg-sprite-generator": "0.0.7",
-        "svgo": "^1.0.5"
+        "laravel-mix-tailwind": "^0.1.0",
+        "svg-spritemap-webpack-plugin": "^1.1.1",
+        "tailwindcss": "^0.5.1"
     },
     "dependencies": {
         "aos": "^2.2.0",
         "axios": "^0.18.0",
         "jquery": "^3.3.1",
-        "svg4everybody": "^2.1.9",
-        "tailwindcss": "^0.5.1"
+        "svg4everybody": "^2.1.9"
     }
 }

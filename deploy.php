@@ -41,12 +41,6 @@ task('npm:build', function () {
 });
 after('npm:install', 'npm:build');
 
-desc('Build svg sprite');
-task('npm:sprite', function () {
-    run("cd {{release_path}} && {{bin/npm}} run svg");
-});
-after('npm:install', 'npm:sprite');
-
 // set('bin/wp', function () {
 //     return run('which wp');
 // });
