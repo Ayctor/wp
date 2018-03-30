@@ -18,6 +18,8 @@ mix.tailwind();
 mix.svgSprite({
     src: 'resources/svg/*.svg',
     filename: 'svg/sprite.svg',
+    chunk: '/js/script',
+    deleteChunk: false,
     prefix: '',
     svgo: {
         plugins: [{
