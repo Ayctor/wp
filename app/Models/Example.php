@@ -4,12 +4,30 @@ namespace Ayctor\Models;
 
 use WpCore\Models\Model;
 
+/**
+ * Class Example to set Example CPT
+ */
 class Example extends Model
 {
+    /**
+     * CPT slug
+     *
+     * @var string
+     */
     protected $post_type = 'example';
 
+    /**
+     * CPT name
+     *
+     * @var string
+     */
     protected $label = 'Example';
 
+    /**
+     * CPT params
+     *
+     * @var array
+     */
     protected $cpt_args = [
         'public' => true,
         'publicly_queryable' => true,
@@ -24,51 +42,103 @@ class Example extends Model
         'menu_icon' => 'dashicons-carrot',
         'rewrite' => true,
         'menu_position' => null,
-        'supports' => ['title'],
+        'supports' => [
+            'title',
+        ],
     ];
 
+    /**
+     * CPT taxonomies
+     *
+     * @var array
+     */
     protected $taxonomies = [
-        'carrot_cat' => [
-            'label' => 'Country',
+        'example_cat' => [
+            'label' => 'Category',
             'hierarchical' => true,
-            'rewrite' => ['slug' => '/country']
+            'rewrite' => [
+                'slug' => '/example_cat',
+            ],
         ],
-        'carrot_tag' => [
-            'label' => 'Colors',
+        'example_tag' => [
+            'label' => 'Tag',
             'hierarchical' => false,
-            'rewrite' => ['slug' => '/colors']
+            'rewrite' => [
+                'slug' => '/example_tag',
+            ],
         ],
     ];
 
-    protected function register()
+    /**
+     * Register the CPT
+     *
+     * @return void
+     */
+    protected function register(): void
     {
-        // CPT fields
+        $this->registerCptFields();
+        $this->registerTaxonomiesFields();
+        $this->registerColumns();
+        $this->registerFilters();
+    }
+
+    /**
+     * Register the CPT fields
+     *
+     * @return void
+     */
+    private function registerCptFields(): void
+    {
         $this->groupCpt('example_meta', 'Test');
         $this->field('example_meta', [
             'type' => 'text',
             'name' => 'test',
             'label' => 'Test',
         ]);
+    }
 
-        // Taxonomy fields
-        $this->groupTax('country_meta', 'Test', 'carrot_cat');
-        $this->field('country_meta', [
+    /**
+     * Register the taxonomies fields
+     *
+     * @return void
+     */
+    private function registerTaxonomiesFields(): void
+    {
+        $this->groupTax('example_cat_meta', 'Test', 'example_cat');
+        $this->field('example_cat_meta', [
             'type' => 'text',
             'name' => 'test',
             'label' => 'Test',
         ]);
+    }
 
-        // Columns
+    /**
+     * Register the columns
+     *
+     * @return void
+     */
+    private function registerColumns(): void
+    {
         $this->column('cb', '<input type="checkbox" />', true);
         $this->column('title', 'Title', true);
         $this->column('test', 'Test', false, 'meta');
-        $this->column('carrot_cat', 'Country', false, 'term');
-        $this->column('carrot_tag', 'Colors', false, 'term');
-        $this->column('carrot_custom', 'Custom', false, 'custom', 'My custom value');
+        $this->column('example_cat', 'Category', false, 'term');
+        $this->column('example_tag', 'Tag', false, 'term');
+        $this->column('example_custom', 'Custom', false, 'custom', 'My custom value');
         $this->column('date', 'Date', true);
+    }
 
-        // Filters
-        $options = ['' => 'Carrot radio test', 'yes' => 'Yes', 'no' => 'No'];
-        $this->filter('carrot_radio', $options);
+    /**
+     * Register the filters
+     *
+     * @return void
+     */
+    private function registerFilters(): void
+    {
+        $this->filter('carrot_radio', [
+            '' => 'Carrot radio test',
+            'yes' => 'Yes',
+            'no' => 'No',
+        ]);
     }
 }

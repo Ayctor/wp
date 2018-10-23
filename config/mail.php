@@ -13,6 +13,6 @@ return [
     'from' => [
         'name' => env('MAIL_FROM_NAME'),
         'address' => env('MAIL_FROM_ADDRESS'),
-    ]
+    ],
 
 ];

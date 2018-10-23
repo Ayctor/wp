@@ -7,10 +7,10 @@ require 'recipe/composer.php';
 set('ssh_type', 'native');
 set('repository', 'git@bitbucket.org:ayctor/cwpt.git');
 set('shared_files', [
-    '.env'
+    '.env',
 ]);
 set('shared_dirs', [
-    'mu-plugins'
+    'mu-plugins',
 ]);
 set('writable_dirs', []);
 

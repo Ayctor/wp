@@ -2,11 +2,18 @@
 
 namespace Ayctor;
 
+use Ayctor\Utils\Helper;
+
 /**
  * Class Bootstrap to init functions inside WP
  */
 class Bootstrap
 {
+    /**
+     * Initialize the app
+     *
+     * @return void
+     */
     public function __construct()
     {
         // Hide admin bar
@@ -40,14 +47,16 @@ class Bootstrap
 
     /**
      * Add theme supports
+     *
+     * @return void
      */
-    public function themeSupports()
+    public function themeSupports(): void
     {
         // Add post thumbnails support.
-        add_theme_support('post-thumbnails');
-
-        // Add support for post formats.
-        // add_theme_support('post-formats', ['aside', 'audio', 'gallery', 'image', 'link', 'quote', 'video']);
+        add_theme_support('post-thumbnails', [
+            'post',
+            'page',
+        ]);
 
         // Add title tag theme support.
         add_theme_support('title-tag');
@@ -65,44 +74,41 @@ class Bootstrap
 
     /**
      * Register menus
+     *
+     * @return void
      */
-    public function menu()
+    public function menu(): void
     {
-        // register_nav_menu('primary-menu', __('Primary Menu', 'wordplate'));
+        register_nav_menu('primary-menu', __('Primary Menu', 'wordplate'));
     }
 
     /**
      * Enqueue scripts and styles
+     *
+     * @return void
      */
-    public function enqueueScripts()
+    public function enqueueScripts(): void
     {
         wp_deregister_script('jquery');
         wp_deregister_script('wp-embed');
 
-        wp_enqueue_script('html5shiv', 'https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js');
-        wp_script_add_data('html5shiv', 'conditional', 'lt IE 9');
-        wp_enqueue_script('respond', 'https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js');
-        wp_script_add_data('respond', 'conditional', 'lt IE 9');
+        wp_enqueue_style('fonts', 'https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800');
+        wp_enqueue_style('app', Helper::mix('styles/app.css'), [], '', 'all');
 
-        // wp_enqueue_style('fonts', 'https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800');
-        wp_enqueue_style('app', $this->mix('styles/app.css'), [], '', 'all');
+        wp_enqueue_script('app', Helper::mix('scripts/app.js'), [], '', true);
 
-        // wp_enqueue_script('manifest', $this->mix('scripts/manifest.js'), [], '', true);
-        // wp_enqueue_script('vendors', $this->mix('scripts/vendors.js'), [], '', true);
-        wp_enqueue_script('app', $this->mix('scripts/app.js'), [], '', true);
-
-        // Add ajax variables
-        // $urls = array(
-        //     'ajaxUrl' => admin_url('admin-ajax.php'),
-        //     'templateUrl' => get_template_directory_uri(),
-        // );
-        // wp_localize_script('app', 'urls', $urls);
+        wp_localize_script('app', 'urls', [
+            'ajax' => admin_url('admin-ajax.php'),
+            'template' => get_template_directory_uri(),
+        ]);
     }
 
     /**
      * Remove Emoji support
+     *
+     * @return void
      */
-    public function removeEmoji()
+    public function removeEmoji(): void
     {
         remove_action('wp_head', 'print_emoji_detection_script', 7);
         remove_action('wp_print_styles', 'print_emoji_styles');
@@ -112,12 +118,13 @@ class Bootstrap
         remove_filter('comment_text_rss', 'wp_staticize_emoji');
         remove_filter('wp_mail', 'wp_staticize_emoji_for_email');
         add_filter('emoji_svg_url', '__return_false');
-        // Filter to remove TinyMCE emojis
-        add_filter('tiny_mce_plugins', function ($plugins) {
+        add_filter('tiny_mce_plugins', function ($plugins): array {
             if (is_array($plugins)) {
-                return array_diff($plugins, array( 'wpemoji' ));
+                return array_diff($plugins, [
+                    'wpemoji',
+                ]);
             }
-            return array();
+            return [];
         });
         // Remove the Really Simple Discovery service link
         remove_action('wp_head', 'rsd_link');
@@ -139,8 +146,10 @@ class Bootstrap
 
     /**
      * Manage Admin left menu
+     *
+     * @return void
      */
-    public function adminMenu()
+    public function adminMenu(): void
     {
         $items = [
             'edit-comments.php', // comments
@@ -153,9 +162,12 @@ class Bootstrap
 
     /**
      * Manage Admin toolbar
-     * @param  WP_Admin_Bar $menu Admin toolbar object
+     *
+     * @param WP_Admin_Bar $menu Admin toolbar object
+     *
+     * @return void
      */
-    public function adminToolbar($menu)
+    public function adminToolbar(\WP_Admin_Bar $menu): void
     {
         $items = [
             'comments',
@@ -170,8 +182,10 @@ class Bootstrap
 
     /**
      * Manage default permalink
+     *
+     * @return void
      */
-    public function permalink()
+    public function permalink(): void
     {
         global $wp_rewrite;
 
@@ -182,28 +196,11 @@ class Bootstrap
 
     /**
      * Text in the left of admin footer
-     * @return string New text
+     *
+     * @return string
      */
-    public function footerText()
+    public function footerText(): string
     {
         return 'Merci d\'avoir fait appel à <a href="http://ayctor.com/" target="_blank">Ayctor</a> pour votre site';
-    }
-
-    /**
-     * Helper function to get file path with version
-     * @param  string $file File to get the path
-     * @return string       Path with mix version
-     */
-    protected function mix($file)
-    {
-        $path = '';
-        $mix_manifest = file_get_contents(__DIR__ . '/../build/mix-manifest.json');
-        $manifest = json_decode($mix_manifest);
-        $file = '/' . ltrim($file, '/');
-        if (isset($manifest->{$file})) {
-            $version = $manifest->{$file};
-            $path = get_template_directory_uri() . '/build' . $version;
-        }
-        return $path;
     }
 }

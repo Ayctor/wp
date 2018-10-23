@@ -6,7 +6,11 @@ mix.setPublicPath('build/');
 mix.setResourceRoot('resources/');
 
 mix.autoload({
-    jquery: ['$', 'window.jQuery', 'jQuery']
+    jquery: [
+        '$',
+        'window.jQuery',
+        'jQuery',
+    ],
 });
 
 mix.js('resources/scripts/app.js', 'build/scripts/');
@@ -25,9 +29,9 @@ mix.svgSprite({
         plugins: [{
             cleanupIDs: false,
             removeEmptyAttrs: true,
-            convertStyleToAttrs: true
-        }]
-    }
+            convertStyleToAttrs: true,
+        }],
+    },
 });
 
 mix.sourceMaps(true, 'cheap-source-map');
@@ -36,5 +40,9 @@ mix.version();
 
 mix.browserSync({
     proxy: process.env.MIX_APP_URL,
-    files: ['**/*.php', '!vendor/**/*.php', 'build/**/*']
+    files: [
+        '**/*.php',
+        '!vendor/**/*.php',
+        'build/**/*',
+    ],
 });

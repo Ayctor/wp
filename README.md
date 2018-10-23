@@ -1,1 +1,3 @@
-See TODO.md
+# WP Ayctor
+
+Boilerplate for WordPress projects
