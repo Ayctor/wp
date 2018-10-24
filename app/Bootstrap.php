@@ -43,6 +43,12 @@ class Bootstrap
 
         // Footer text
         add_filter('admin_footer_text', [$this, 'footerText']);
+
+        // Remove H1 from editor
+        add_filter('tiny_mce_before_init', [$this, 'removeH1FromEditor']);
+
+        // Images custom sizes
+        $this->addCustomImagesSizes();
     }
 
     /**
@@ -202,5 +208,29 @@ class Bootstrap
     public function footerText(): string
     {
         return 'Merci d\'avoir fait appel à <a href="http://ayctor.com/" target="_blank">Ayctor</a> pour votre site';
+    }
+
+    /**
+     * Allow to remove the H1 tag from the editor
+     *
+     * @param array $settings The settings
+     *
+     * @return array
+     */
+    public function removeH1FromEditor(array $settings): array
+    {
+        $settings['block_formats'] = 'Paragraph=p;Heading 2=h2;Heading 3=h3;Heading 4=h4;Heading 5=h5;Heading 6=h6;Preformatted=pre;';
+        return $settings;
+    }
+
+    /**
+     * Add custom images sizes
+     *
+     * @return void
+     */
+    private function addCustomImagesSizes(): void
+    {
+        // add_image_size('small', 250, 250, true);
+        // add_image_size('medium', 250);
     }
 }
