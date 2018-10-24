@@ -47,6 +47,11 @@ class Bootstrap
         // Remove H1 from editor
         add_filter('tiny_mce_before_init', [$this, 'removeH1FromEditor']);
 
+        // Search on metas
+        add_filter('posts_join', [$this, 'customSearchJoin']);
+        add_filter('posts_where', [$this, 'customSearchWhere']);
+        add_filter('posts_distinct', [$this, 'customSearchDistinct']);
+
         // Images custom sizes
         $this->addCustomImagesSizes();
     }
@@ -221,6 +226,64 @@ class Bootstrap
     {
         $settings['block_formats'] = 'Paragraph=p;Heading 2=h2;Heading 3=h3;Heading 4=h4;Heading 5=h5;Heading 6=h6;Preformatted=pre;';
         return $settings;
+    }
+
+    /**
+     * Change the JOIN statement on admin search query
+     *
+     * @param string $join The query
+     *
+     * @return string
+     */
+    public function customSearchJoin(string $join): string
+    {
+        global $pagenow, $wpdb;
+
+        if (is_admin() && 'edit.php' === $pagenow && !empty($_GET['s'])) {
+            $join .= 'LEFT JOIN ' . $wpdb->postmeta . ' ON ' . $wpdb->posts . '.ID = ' . $wpdb->postmeta . '.post_id ';
+        }
+
+        return $join;
+    }
+
+    /**
+     * Change the WHERE statement on admin search query
+     *
+     * @param string $where The query
+     *
+     * @return string
+     */
+    public function customSearchWhere(string $where): string
+    {
+        global $pagenow, $wpdb;
+
+        if (is_admin() && 'edit.php' === $pagenow && !empty($_GET['s'])) {
+            $where = preg_replace(
+                '/\(\s*' . $wpdb->posts . '.post_title\s+LIKE\s*(\'[^\']+\')\s*\)/',
+                '(' . $wpdb->posts . '.post_title LIKE $1) OR (' . $wpdb->postmeta . '.meta_value LIKE $1)',
+                $where
+            );
+        }
+
+        return $where;
+    }
+
+    /**
+     * Add the DISTINCT statement on admin search query
+     *
+     * @param string $where The query
+     *
+     * @return string
+     */
+    public function customSearchDistinct(string $where): string
+    {
+        global $pagenow, $wpdb;
+
+        if (is_admin() && $pagenow === 'edit.php' && !empty($_GET['s'])) {
+            return 'DISTINCT';
+        }
+
+        return $where;
     }
 
     /**
