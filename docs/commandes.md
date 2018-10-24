@@ -11,3 +11,11 @@ Par défaut, le thème vient avec la commande **reset** qui contient la fonction
 Le nom de la classe que vous créez doit être le nom de votre commande, suivi du mot **Command**, le tout en [CamelCase](https://fr.wikipedia.org/wiki/Camel_case).
 
 Exemple : **ResetCommand**
+
+---
+
+Le coeur du thème se trouve dans le package : [https://github.com/Ayctor/wp-core](https://github.com/Ayctor/wp-core)
+
+Ce dernier contient le code de base et les modèle de classes pour les contrôleurs, les modèles, les shortcodes, etc. Vous pouvez les trouver à l'adresse : [https://github.com/Ayctor/wp-core/tree/master/src/WpCore/Blueprints](https://github.com/Ayctor/wp-core/tree/master/src/WpCore/Blueprints)
+
+Par exemple, pour créer un modèle, il suffit de lancer la commande : `wp blueprint model Example`
