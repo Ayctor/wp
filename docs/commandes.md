@@ -4,7 +4,7 @@ Les commandes permettent d'éxecuter facilement des tâches côté serveur soit 
 
 Elles héritent de la classe `\WP_CLI_Command` qui est disponible en installant [WP CLI](https://wp-cli.org/fr/).
 
-Il est fortement recommandé d'installer **WP CLI** afin de gérer plus facilement vos Wordpress, par exemple, pour télécharger les sources de Wordpress, il vous suffit de lancer la commande suivant dans le répertoire de votre projet : `wp download core`
+Il est fortement recommandé d'installer **WP CLI** afin de gérer plus facilement vos Wordpress, par exemple, pour télécharger les sources de Wordpress, il vous suffit de lancer la commande suivant dans le répertoire de votre projet : `wp download core`.
 
 Par défaut, le thème vient avec la commande **reset** qui contient la fonction **opcache** permettant simplement de réinitialiser Opcache.
 
@@ -18,4 +18,4 @@ Le coeur du thème se trouve dans le package : [https://github.com/Ayctor/wp-cor
 
 Ce dernier contient le code de base et les modèle de classes pour les contrôleurs, les modèles, les shortcodes, etc. Vous pouvez les trouver à l'adresse : [https://github.com/Ayctor/wp-core/tree/master/src/WpCore/Blueprints](https://github.com/Ayctor/wp-core/tree/master/src/WpCore/Blueprints)
 
-Par exemple, pour créer un modèle, il suffit de lancer la commande : `wp blueprint model Example`
+Par exemple, pour créer un modèle, il suffit de lancer la commande : `wp blueprint model Example`.

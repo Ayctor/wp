@@ -1,43 +1,43 @@
 # Arborescence
 
-- **app/** : Répertoire contenant les classes du thème
-    - **Commands/** : Répertoire contenant les classes des commandes du thème
-    - **Controllers/** : Répertoire contenant les classes des contôleurs du thème
-    - **Models/** : Répertoire contenant les classes des modèles du thème
-    - **Shortcodes/** : Répertoire contenant les classes des shortcodes du thème
-    - **Utils/** : Répertoire contenant les classes utilitaires du thème
+- **app/** : répertoire contenant les classes du thème
+    - **Commands/** : répertoire contenant les classes des commandes du thème
+    - **Controllers/** : répertoire contenant les classes des contôleurs du thème
+    - **Models/** : répertoire contenant les classes des modèles du thème
+    - **Shortcodes/** : répertoire contenant les classes des shortcodes du thème
+    - **Utils/** : répertoire contenant les classes utilitaires du thème
     - **Bootstrap.php** : Fichier permettant l'initialisation du thème
-- **assets/** : Répertoire contenant les fichiers statiques du thème
-    - **favicons/** : Répertoire contenant les fichiers images du favicon du thème
-    - **fonts/** : Répertoire contenant les fichiers de la ou des font(s) du thème
-    - **images/** : Répertoire contenant les images du thèmùe
-- **build/** : Répertoire contenant les fichiers compiler du thème
-    - **scripts/** : Répertoire contenant les fichiers JavaScript du thème
-    - **styles/** : Répertoire contenant les fichiers CSS du thème
-- **config/** : Répertoire contenant les fichiers de configuration du thème
-- **docs/** : Répertoire contenant les fichiers de documentation du thème
-- **mu-plugins/** : Répertoire contenant les fichiers des MU-plugins du thème
-- **node_modules/** : Répertoire contenant les modules NPM
-- **resources/** : Répertoire contenant les ressources à compiler du thème
-    - **scripts/** : Répertoire contenant JavaScript du thème
-    - **sytles/** : Répertoire contenant les fichiers CSS/SCSS du thème
-    - **svg/** : Répertoire contenant les SVG pour le sprite du thème
-    - **views/** : Répertoire contenant les fichiers HTML du thème
-        - **cache/** : Répertoire contenant les fichiers HTML compilés du thème
-        - **layouts/** : Répertoire contenant les layouts HTML du thème
-        - **mails/** : Répertoire contenant les vues HTML des mails du thème
-        - **pages/** : Répertoire contenant les vues HTML du thème
-        - **partials/** : Répertoire contenant les composants HTML du thème
-        - **shortcodes/** : Répertoire contenant les vues HTML des shortcodes du thème
-- **vendor/** : Répertoire contenant les modules composer
-- **.editorconfig** : Fichier permettant l'homogénéisation du code sur tous les éditeurs
-- **.env.example** : Fichier d'environnement du thème (à dupliquer en *.env*)
-- **.eslintrc** : Fichier de configuration d'Eslint
-- **composer.json** : Fichier permettant l'initialisation du package Composer
-- **deploy.php** : Fichier permettant le déploiement du thème
-- **functions.php** : Fichier permettant l'initialisation du thème
-- **index.php** : Fichier permettant le routage du thème
-- **package.json** : Fichier permettant l'initialisation du package NPM
-- **style.css** : Fichier permettant l'initialisation du thème
-- **tailwind.js** : Fichier permettant l'initialisation de Tailwind
-- **webpack.mix.js** : Fichier permettant l'initialisation de Webpack
+- **assets/** : répertoire contenant les fichiers statiques du thème
+    - **favicons/** : répertoire contenant les fichiers images du favicon du thème
+    - **fonts/** : répertoire contenant les fichiers de la ou des font(s) du thème
+    - **images/** : répertoire contenant les images du thèmùe
+- **build/** : répertoire contenant les fichiers compiler du thème
+    - **scripts/** : répertoire contenant les fichiers JavaScript du thème
+    - **styles/** : répertoire contenant les fichiers CSS du thème
+- **config/** : répertoire contenant les fichiers de configuration du thème
+- **docs/** : répertoire contenant les fichiers de documentation du thème
+- **mu-plugins/** : répertoire contenant les fichiers des MU-plugins du thème
+- **node_modules/** : répertoire contenant les modules NPM
+- **resources/** : répertoire contenant les ressources à compiler du thème
+    - **scripts/** : répertoire contenant JavaScript du thème
+    - **sytles/** : répertoire contenant les fichiers CSS/SCSS du thème
+    - **svg/** : répertoire contenant les SVG pour le sprite du thème
+    - **views/** : répertoire contenant les fichiers HTML du thème
+        - **cache/** : répertoire contenant les fichiers HTML compilés du thème
+        - **layouts/** : répertoire contenant les layouts HTML du thème
+        - **mails/** : répertoire contenant les vues HTML des mails du thème
+        - **pages/** : répertoire contenant les vues HTML du thème
+        - **partials/** : répertoire contenant les composants HTML du thème
+        - **shortcodes/** : répertoire contenant les vues HTML des shortcodes du thème
+- **vendor/** : répertoire contenant les modules composer
+- **.editorconfig** : fichier permettant l'homogénéisation du code sur tous les éditeurs
+- **.env.example** : fichier d'environnement du thème (à dupliquer en *.env*)
+- **.eslintrc** : fichier de configuration d'Eslint
+- **composer.json** : fichier permettant l'initialisation du package Composer
+- **deploy.php** : fichier permettant le déploiement du thème
+- **functions.php** : fichier permettant l'initialisation du thème
+- **index.php** : fichier permettant le routage du thème
+- **package.json** : fichier permettant l'initialisation du package NPM
+- **style.css** : fichier permettant l'initialisation du thème
+- **tailwind.js** : fichier permettant l'initialisation de Tailwind
+- **webpack.mix.js** : fichier permettant l'initialisation de Webpack
