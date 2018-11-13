@@ -11,20 +11,20 @@ class PageController extends Controller
 {
     /**
      * View for index.php
-     * @return string Html for index page
+     *
+     * @return string
      */
-    public function index()
+    public function index(): ?string
     {
-        $toto = 'test';
-
-        return $this->view('pages.index', compact('toto'));
+        return $this->view('pages.index');
     }
 
     /**
      * View for 404.php
-     * @return string Html for 404 page
+     *
+     * @return string
      */
-    public function notFound()
+    public function notFound(): ?string
     {
         return $this->view('pages.404');
     }

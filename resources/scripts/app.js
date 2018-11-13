@@ -1,4 +1,6 @@
-require('svg4everybody')({polyfill: true});
+require('svg4everybody')({
+    polyfill: true,
+});
 
 // window.axios = require('axios');
 // window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';

@@ -22,7 +22,7 @@ return [
 
     'config' => [
         'id'           => 'tgmpa_ayctor',
-        'is_automatic' => true
-    ]
+        'is_automatic' => true,
+    ],
 
 ];

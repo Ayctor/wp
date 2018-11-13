@@ -14,3 +14,4 @@ if (defined('WP_CLI') && WP_CLI) {
 new \Ayctor\Models\Example;
 
 // Load Shortcodes
+new \Ayctor\Shortcodes\Example;

@@ -11,10 +11,10 @@
     },
     "devDependencies": {
         "@ayctor/laravel-mix-svg-sprite": "^0.1.0",
-        "browser-sync": "^2.23.6",
+        "browser-sync": "^2.26.3",
         "browser-sync-webpack-plugin": "^2.0.1",
         "cross-env": "^5.1.4",
-        "laravel-mix": "^2.1.11",
+        "laravel-mix": "^2.1.14",
         "laravel-mix-tailwind": "^0.1.0",
         "svg-spritemap-webpack-plugin": "^1.1.1",
         "tailwindcss": "^0.5.1"

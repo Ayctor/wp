@@ -2,11 +2,18 @@
 
 namespace Ayctor;
 
+use Ayctor\Utils\Helper;
+
 /**
  * Class Bootstrap to init functions inside WP
  */
 class Bootstrap
 {
+    /**
+     * Initialize the app
+     *
+     * @return void
+     */
     public function __construct()
     {
         // Hide admin bar
@@ -36,18 +43,31 @@ class Bootstrap
 
         // Footer text
         add_filter('admin_footer_text', [$this, 'footerText']);
+
+        // Remove H1 from editor
+        add_filter('tiny_mce_before_init', [$this, 'removeH1FromEditor']);
+
+        // Search on metas
+        add_filter('posts_join', [$this, 'customSearchJoin']);
+        add_filter('posts_where', [$this, 'customSearchWhere']);
+        add_filter('posts_distinct', [$this, 'customSearchDistinct']);
+
+        // Images custom sizes
+        $this->addCustomImagesSizes();
     }
 
     /**
      * Add theme supports
+     *
+     * @return void
      */
-    public function themeSupports()
+    public function themeSupports(): void
     {
         // Add post thumbnails support.
-        add_theme_support('post-thumbnails');
-
-        // Add support for post formats.
-        // add_theme_support('post-formats', ['aside', 'audio', 'gallery', 'image', 'link', 'quote', 'video']);
+        add_theme_support('post-thumbnails', [
+            'post',
+            'page',
+        ]);
 
         // Add title tag theme support.
         add_theme_support('title-tag');
@@ -65,44 +85,41 @@ class Bootstrap
 
     /**
      * Register menus
+     *
+     * @return void
      */
-    public function menu()
+    public function menu(): void
     {
-        // register_nav_menu('primary-menu', __('Primary Menu', 'wordplate'));
+        register_nav_menu('primary-menu', __('Primary Menu', 'wordplate'));
     }
 
     /**
      * Enqueue scripts and styles
+     *
+     * @return void
      */
-    public function enqueueScripts()
+    public function enqueueScripts(): void
     {
         wp_deregister_script('jquery');
         wp_deregister_script('wp-embed');
 
-        wp_enqueue_script('html5shiv', 'https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js');
-        wp_script_add_data('html5shiv', 'conditional', 'lt IE 9');
-        wp_enqueue_script('respond', 'https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js');
-        wp_script_add_data('respond', 'conditional', 'lt IE 9');
+        wp_enqueue_style('fonts', 'https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800');
+        wp_enqueue_style('app', Helper::mix('styles/app.css'), [], '', 'all');
 
-        // wp_enqueue_style('fonts', 'https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800');
-        wp_enqueue_style('app', $this->mix('styles/app.css'), [], '', 'all');
+        wp_enqueue_script('app', Helper::mix('scripts/app.js'), [], '', true);
 
-        // wp_enqueue_script('manifest', $this->mix('scripts/manifest.js'), [], '', true);
-        // wp_enqueue_script('vendors', $this->mix('scripts/vendors.js'), [], '', true);
-        wp_enqueue_script('app', $this->mix('scripts/app.js'), [], '', true);
-
-        // Add ajax variables
-        // $urls = array(
-        //     'ajaxUrl' => admin_url('admin-ajax.php'),
-        //     'templateUrl' => get_template_directory_uri(),
-        // );
-        // wp_localize_script('app', 'urls', $urls);
+        wp_localize_script('app', 'urls', [
+            'ajax' => admin_url('admin-ajax.php'),
+            'template' => get_template_directory_uri(),
+        ]);
     }
 
     /**
      * Remove Emoji support
+     *
+     * @return void
      */
-    public function removeEmoji()
+    public function removeEmoji(): void
     {
         remove_action('wp_head', 'print_emoji_detection_script', 7);
         remove_action('wp_print_styles', 'print_emoji_styles');
@@ -112,12 +129,13 @@ class Bootstrap
         remove_filter('comment_text_rss', 'wp_staticize_emoji');
         remove_filter('wp_mail', 'wp_staticize_emoji_for_email');
         add_filter('emoji_svg_url', '__return_false');
-        // Filter to remove TinyMCE emojis
-        add_filter('tiny_mce_plugins', function ($plugins) {
+        add_filter('tiny_mce_plugins', function ($plugins): array {
             if (is_array($plugins)) {
-                return array_diff($plugins, array( 'wpemoji' ));
+                return array_diff($plugins, [
+                    'wpemoji',
+                ]);
             }
-            return array();
+            return [];
         });
         // Remove the Really Simple Discovery service link
         remove_action('wp_head', 'rsd_link');
@@ -139,8 +157,10 @@ class Bootstrap
 
     /**
      * Manage Admin left menu
+     *
+     * @return void
      */
-    public function adminMenu()
+    public function adminMenu(): void
     {
         $items = [
             'edit-comments.php', // comments
@@ -153,9 +173,12 @@ class Bootstrap
 
     /**
      * Manage Admin toolbar
-     * @param  WP_Admin_Bar $menu Admin toolbar object
+     *
+     * @param WP_Admin_Bar $menu Admin toolbar object
+     *
+     * @return void
      */
-    public function adminToolbar($menu)
+    public function adminToolbar(\WP_Admin_Bar $menu): void
     {
         $items = [
             'comments',
@@ -170,8 +193,10 @@ class Bootstrap
 
     /**
      * Manage default permalink
+     *
+     * @return void
      */
-    public function permalink()
+    public function permalink(): void
     {
         global $wp_rewrite;
 
@@ -182,28 +207,93 @@ class Bootstrap
 
     /**
      * Text in the left of admin footer
-     * @return string New text
+     *
+     * @return string
      */
-    public function footerText()
+    public function footerText(): string
     {
         return 'Merci d\'avoir fait appel à <a href="http://ayctor.com/" target="_blank">Ayctor</a> pour votre site';
     }
 
     /**
-     * Helper function to get file path with version
-     * @param  string $file File to get the path
-     * @return string       Path with mix version
+     * Allow to remove the H1 tag from the editor
+     *
+     * @param array $settings The settings
+     *
+     * @return array
      */
-    protected function mix($file)
+    public function removeH1FromEditor(array $settings): array
     {
-        $path = '';
-        $mix_manifest = file_get_contents(__DIR__ . '/../build/mix-manifest.json');
-        $manifest = json_decode($mix_manifest);
-        $file = '/' . ltrim($file, '/');
-        if (isset($manifest->{$file})) {
-            $version = $manifest->{$file};
-            $path = get_template_directory_uri() . '/build' . $version;
+        $settings['block_formats'] = 'Paragraph=p;Heading 2=h2;Heading 3=h3;Heading 4=h4;Heading 5=h5;Heading 6=h6;Preformatted=pre;';
+        return $settings;
+    }
+
+    /**
+     * Change the JOIN statement on admin search query
+     *
+     * @param string $join The query
+     *
+     * @return string
+     */
+    public function customSearchJoin(string $join): string
+    {
+        global $pagenow, $wpdb;
+
+        if (is_admin() && 'edit.php' === $pagenow && !empty($_GET['s'])) {
+            $join .= 'LEFT JOIN ' . $wpdb->postmeta . ' ON ' . $wpdb->posts . '.ID = ' . $wpdb->postmeta . '.post_id ';
         }
-        return $path;
+
+        return $join;
+    }
+
+    /**
+     * Change the WHERE statement on admin search query
+     *
+     * @param string $where The query
+     *
+     * @return string
+     */
+    public function customSearchWhere(string $where): string
+    {
+        global $pagenow, $wpdb;
+
+        if (is_admin() && 'edit.php' === $pagenow && !empty($_GET['s'])) {
+            $where = preg_replace(
+                '/\(\s*' . $wpdb->posts . '.post_title\s+LIKE\s*(\'[^\']+\')\s*\)/',
+                '(' . $wpdb->posts . '.post_title LIKE $1) OR (' . $wpdb->postmeta . '.meta_value LIKE $1)',
+                $where
+            );
+        }
+
+        return $where;
+    }
+
+    /**
+     * Add the DISTINCT statement on admin search query
+     *
+     * @param string $where The query
+     *
+     * @return string
+     */
+    public function customSearchDistinct(string $where): string
+    {
+        global $pagenow, $wpdb;
+
+        if (is_admin() && $pagenow === 'edit.php' && !empty($_GET['s'])) {
+            return 'DISTINCT';
+        }
+
+        return $where;
+    }
+
+    /**
+     * Add custom images sizes
+     *
+     * @return void
+     */
+    private function addCustomImagesSizes(): void
+    {
+        // add_image_size('small', 250, 250, true);
+        // add_image_size('medium', 250);
     }
 }
