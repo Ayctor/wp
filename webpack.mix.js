@@ -19,20 +19,7 @@ mix.sass('resources/styles/app.scss', 'build/styles/');
 
 mix.tailwind();
 
-mix.svgSprite({
-    src: 'resources/svg/*.svg',
-    filename: 'svg/sprite.svg',
-    chunk: '/js/script',
-    deleteChunk: false,
-    prefix: '',
-    svgo: {
-        plugins: [{
-            cleanupIDs: false,
-            removeEmptyAttrs: true,
-            convertStyleToAttrs: true,
-        }],
-    },
-});
+mix.svgSprite('resources/svg/*.svg');
 
 mix.sourceMaps(true, 'cheap-source-map');
 
@@ -40,9 +27,9 @@ mix.version();
 
 mix.browserSync({
     proxy: process.env.MIX_APP_URL,
-    files: [
-        '**/*.php',
-        '!vendor/**/*.php',
-        'build/**/*',
-    ],
+    watch: true,
+    ignore: [
+        /vendor/,
+        /docs/
+    ]
 });

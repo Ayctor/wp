@@ -15,9 +15,9 @@ set('shared_dirs', [
 set('writable_dirs', []);
 
 // Servers
-host('rec.es1')
-    ->stage('recette')
-    ->set('deploy_path', '/home/websites/deployer/');
+host('forge@qa.ayctor.io')
+    ->stage('test')
+    ->set('deploy_path', '/home/forge/deploy/');
 
 // Tasks
 set('bin/npm', function () {
@@ -26,12 +26,7 @@ set('bin/npm', function () {
 
 desc('Install npm packages');
 task('npm:install', function () {
-    if (has('previous_release')) {
-        if (test('[ -d {{previous_release}}/node_modules ]')) {
-            run('cp -R {{previous_release}}/node_modules {{release_path}}');
-        }
-    }
-    run("cd {{release_path}} && {{bin/npm}} install");
+    run("cd {{release_path}} && {{bin/npm}} ci --no-audit");
 });
 after('deploy:update_code', 'npm:install');
 
@@ -40,6 +35,12 @@ task('npm:build', function () {
     run("cd {{release_path}} && {{bin/npm}} run production");
 });
 after('npm:install', 'npm:build');
+
+desc('Reload PHP');
+task('php:reload', function(){
+    run('sudo /usr/sbin/service php7.2-fpm reload');
+})->onStage('test');
+after('deploy:symlink', 'php:reload');
 
 // set('bin/wp', function () {
 //     return run('which wp');

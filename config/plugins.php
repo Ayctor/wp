@@ -13,11 +13,6 @@ return [
             'slug'      => 'wordpress-seo',
             'required'  => false,
         ],
-        [
-            'name'      => 'Bugsnag',
-            'slug'      => 'bugsnag',
-            'required'  => false,
-        ],
     ],
 
     'config' => [

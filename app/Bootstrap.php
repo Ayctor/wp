@@ -20,7 +20,7 @@ class Bootstrap
         add_filter('show_admin_bar', '__return_false');
 
         // Hide ACF in admin
-        define('ACF_LITE', true);
+        define('ACF_LITE', env('ACF_LITE', true));
 
         // Setup theme support
         add_action('after_setup_theme', [$this, 'themeSupports']);
