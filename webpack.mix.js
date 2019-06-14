@@ -1,5 +1,6 @@
 let mix = require('laravel-mix');
 require('laravel-mix-tailwind');
+require('laravel-mix-purgecss');
 require('@ayctor/laravel-mix-svg-sprite');
 
 mix.setPublicPath('build/');
@@ -15,9 +16,10 @@ mix.autoload({
 
 mix.js('resources/scripts/app.js', 'build/scripts/');
 
-mix.sass('resources/styles/app.scss', 'build/styles/');
+mix.sass('resources/styles/app.scss', 'build/styles/')
+   .purgeCss();
 
-mix.tailwind();
+mix.tailwind('./tailwind.config.js');
 
 mix.svgSprite('resources/svg/*.svg');
 
