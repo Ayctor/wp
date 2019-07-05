@@ -1,16 +1,10 @@
 ## BACK :
 
-  - .htaccess et nginx config
-
-  - Allow some meta to be searchable
+  - Model datas
 
   - Class loader for bootstraps, commands, ajax, models and shortcodes
 
   - make use of wp actions
-
-  - custom router
-
-  - minimum stability -> stable
 
 ## README :
 
@@ -35,6 +29,8 @@
   - Mails
 
   - Shortcodes
+
+  - Pdfs
 
   - Generators (show how to extend)
 

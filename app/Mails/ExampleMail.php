@@ -7,7 +7,7 @@ use WpCore\Mails\Mail;
 /**
  * Class Example for example mail
  */
-class Example extends Mail
+class ExampleMail extends Mail
 {
     /**
      * Subject of the mail

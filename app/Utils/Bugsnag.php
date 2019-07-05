@@ -7,22 +7,24 @@ namespace Ayctor\Utils;
  */
 class Bugsnag
 {
+    use Singleton;
+
+    public $bugsnag;
+
     /**
      * Initialize Bugsnag
      *
      * @return void
      */
-    public static function init(): void
+    private function __construct()
     {
-        if (getenv('BUGSNAG_API_KEY')) {
-            $bugsnag = \Bugsnag\Client::make(getenv('BUGSNAG_API_KEY'));
-            $bugsnag->setReleaseStage(getenv('WP_ENV') ?: 'prod');
+        if (env('BUGSNAG_API_KEY')) {
+            $this->bugsnag = \Bugsnag\Client::make(env('BUGSNAG_API_KEY'));
 
-            if (function_exists('shell_exec')) {
-                $bugsnag->setAppVersion(static::getCurrentGitVersion());
-            }
+            $this->bugsnag->setReleaseStage(env('WP_ENV', 'production'));
+            $this->bugsnag->setAppVersion($this->getCurrentGitVersion());
 
-            $bugsnag->registerCallback(function ($report) {
+            $this->bugsnag->registerCallback(function ($report) {
                 if (is_user_logged_in()) {
                     $current_user = wp_get_current_user();
                     $report->setUser([
@@ -38,7 +40,7 @@ class Bugsnag
                 }
             });
 
-            \Bugsnag\Handler::register($bugsnag);
+            \Bugsnag\Handler::register($this->bugsnag);
         }
     }
 
@@ -47,7 +49,7 @@ class Bugsnag
      *
      * @return string
      */
-    public static function getCurrentGitVersion(): string
+    private function getCurrentGitVersion(): string
     {
         if (is_dir(get_template_directory() . '/.git')) {
             return trim(shell_exec('cd ' . get_template_directory() . '/ && git rev-parse --verify HEAD'));

@@ -7,7 +7,7 @@ use WpCore\Shortcodes\Shortcode;
 /**
  * Class Example to set Example shortcode
  */
-class Example extends Shortcode
+class ExampleShortcode extends Shortcode
 {
     /**
      * Name of the shortcode to use in wp admin

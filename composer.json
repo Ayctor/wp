@@ -20,6 +20,7 @@
     },
     "description": "WP boilerplate from Ayctor",
     "minimum-stability": "dev",
+    "prefer-stable": true,
     "require": {
         "php": "^7.0",
         "ayctor/wp-core": "dev-master"

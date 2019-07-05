@@ -8,10 +8,14 @@ new \Ayctor\Bootstrap;
 // Load Commands
 if (defined('WP_CLI') && WP_CLI) {
     WP_CLI::add_command('reset', Ayctor\Commands\ResetCommand::class);
+    WP_CLI::add_command('schedule', Ayctor\Commands\ScheduleCommand::class);
 }
 
 // Load Models
 new \Ayctor\Models\Example;
 
 // Load Shortcodes
-new \Ayctor\Shortcodes\Example;
+new \Ayctor\Shortcodes\ExampleShortcode;
+
+// Load Pages
+new \Ayctor\Pages\ExamplePage;
