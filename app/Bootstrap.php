@@ -16,6 +16,9 @@ class Bootstrap
      */
     public function __construct()
     {
+        // Disabling canonical redirect
+        remove_filter('template_redirect', 'redirect_canonical');
+
         // Hide admin bar
         add_filter('show_admin_bar', '__return_false');
 
