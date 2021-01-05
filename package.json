@@ -8,7 +8,7 @@
     },
     "devDependencies": {
         "@ayctor/laravel-mix-svg-sprite": "^1.0.0",
-        "axios": "^0.19.0",
+        "axios": "^0.21.1",
         "browser-sync": "^2.26.7",
         "browser-sync-webpack-plugin": "^2.0.1",
         "imagemin": "^6.1.0",
